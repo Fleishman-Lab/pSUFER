@@ -19,7 +19,7 @@ To run the whole code, you are required to install:
 # Running the code
 
 To start, place your pdb files in in/<my dir>/<PDB>.pdb. **Filenames shouldn't include quiestions marks (?)**. 
-Also, adjust path to Rostta executable in pSUFER_config.yaml, under "<rosetta_exec>"
+Also, adjust path to Rostta executable in ``pSUFER_config.yaml``, under <rosetta_exec>
   
 Next, run the pSUFFER.snakemake code. An example of a commandline would be:
 

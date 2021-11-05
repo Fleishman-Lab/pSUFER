@@ -32,9 +32,9 @@ The code will perform the following:
   1. Create 4 refinement trajectories for each pdb in ``in/<my dir>/<PDB>.pdb``. All trajectories and scorefiles would be found in ``temp`` directory, and will be deleted in the end of the run. The The lowest energy structure will be placed under ``relax/<my dir>/<PDB>.pdb``.  
   2. Run a mutational scan (filterscan) for each position in the protein. This will result in several new directories:  
   
-    a. ``temp_resfiles``: temporary repository for resfiles. Most of it is deleted at the end of the run, but the score logs are saved
-    b. ``resfiles``: The final resfiles for each PDB
-    c. ``pymol_pSUFERed``: a set of pymol scripts to load the relaxed PDB files and label the suboptimal positions.
+    a. temp_resfiles: temporary repository for resfiles. Most of it is deleted at the end of the run, but the score logs are saved
+    b. resfiles: The final resfiles for each PDB
+    c. pymol_pSUFERed: a set of pymol scripts to load the relaxed PDB files and label the suboptimal positions.
    
  
 You can control the pSUFER analysis through pSUFER_config.yaml:

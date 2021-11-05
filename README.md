@@ -33,9 +33,7 @@ The code will perform the following:
   2. Run a mutational scan (filterscan) for each position in the protein. This will result in several new directories:  
   
     a. ``temp_resfiles``: temporary repository for resfiles. Most of it is deleted at the end of the run, but the score logs are saved
-
     b. ``resfiles``: The final resfiles for each PDB
-  
     c. ``pymol_pSUFERed``: a set of pymol scripts to load the relaxed PDB files and label the suboptimal positions.
    
  

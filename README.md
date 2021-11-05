@@ -18,18 +18,18 @@ To run the whole code, you are required to install:
 
 # Running the code
 
-To start, place your pdb files in in/<my dir>/<PDB>.pdb. **Filenames shouldn't include quiestions marks (?)**. 
-Also, adjust path to Rostta executable in ``pSUFER_config.yaml``, under <rosetta_exec>
+To start, place your pdb files in ``in/<my dir>/<PDB>.pdb``. **Filenames shouldn't include question marks (?)**. 
+Also, adjust path to Rosetta executable in ``pSUFER_config.yaml``, under <rosetta_exec>
   
 Next, run the pSUFFER.snakemake code. An example of a commandline would be:
 
 ```
 snakemake --cores 2000 --snakefile pSUFER.snakefile --configfile pSUFER_config.yaml --latency-wait 600
 ```
-It is highly recomended adding a "--cluster" flag and relevant parameters to run the code on a computer cluster. 
+It is highly recommended adding a "--cluster" flag and relevant parameters to run the code on a computer cluster. 
 
 The code will perform the following:
-  1. Create 4 refinement trajectories for each pdb in ``in/<my dir>/<PDB>.pdb``. All trajectories and scorefiles would be found in ``temp`` directory, and will be deleted in the end of the run. The The lowest energy structure will be placed under ``relax/<my dir>/<PDB>.pdb``.  
+  1. Create 4 refinement trajectories for each pdb in ``in/<my dir>/<PDB>.pdb``. All trajectories and scorefiles would be found in ``temp`` directory, and will be deleted at the end of the run. The lowest energy structure will be placed under ``relax/<my dir>/<PDB>.pdb``.  
   2. Run a mutational scan (filterscan) for each position in the protein. This will result in several new directories:  
   
     a. temp_resfiles: temporary repository for resfiles. Most of it is deleted at the end of the run, but the score logs are saved
@@ -39,16 +39,15 @@ The code will perform the following:
  
 You can control the pSUFER analysis through pSUFER_config.yaml:
 1. trajectories: how many relax trajectories to perform.
-2. energy_cutoff_for_pymol: What is the energy cutoff by which to decide look for suboptimal positions
+2. energy_cutoff_for_pymol: What is the energy cutoff by which to decide to look for suboptimal positions
 3. identities_at_frustrated_pos: how many identities at a position count for being suboptimal.
 
 In case you wish to avoid the relaxation step, you can place the structures directly under ``relax/<my dir>/<PDB>.pdb``.
   
 # Results
-  All suboptimal positions are summerized in pSUFERED.csv
+  All suboptimal positions are summarized in pSUFERED.csv
   
-  To visualized the suboptimal positions, two options are available:
-    
+  To visualize the suboptimal positions, two options are available:
   1. open the relaxed structures in pymol (under ``relax/<my dir>/<PDB>.pdb``) and drop the file ``pymol_pSUFERed/<my dir>/<PDB>/load_struct.pml`` on the session.
   2. open the ``pymol_pSUFERed/master.pse`` to see all pdbs in the same pymol session. 
   

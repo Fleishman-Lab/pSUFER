@@ -45,6 +45,7 @@ In case you wish to avoid the relaxation step, you can place the structures dire
   
 # Results
   All suboptimal positions are summerized in pSUFERED.csv
+  
   To visualized the suboptimal positions, two options are available:
     
   1. open the relaxed structures in pymol (under ``relax/<my dir>/<PDB>.pdb``) and drop the file ``pymol_pSUFERed/<my dir>/<PDB>/load_struct.pml`` on the session.

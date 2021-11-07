@@ -1,9 +1,6 @@
 # pSUFER
 protein Strain, Unsatisfactoriness, and Frustration findER
 
-
-READ THIS FILE BEFORE RUNNING
-
 Goal: Compute a side-chain suboptimality analysis for PDBs. Suboptimal positions
 are defined as those for which Rosetta mutation scanning (filterscan)
 identified at least 5 identities with lower energies (<=0) than the native

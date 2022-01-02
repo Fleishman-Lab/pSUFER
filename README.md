@@ -18,7 +18,7 @@ To run the whole code, you are required to install:
 To start, place your pdb files in ``in/<my dir>/<PDB>.pdb``. **Filenames shouldn't include question marks (?)**. 
 Also, adjust path to Rosetta executable in ``pSUFER_config.yaml``, under <rosetta_exec>
   
-Next, run the pSUFFER.snakemake code. An example of a commandline would be:
+Next, run the pSUFER.snakemake code. An example of a commandline would be:
 
 ```
 snakemake --cores 2000 --snakefile pSUFER.snakefile --configfile pSUFER_config.yaml --latency-wait 600

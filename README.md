@@ -12,7 +12,7 @@ To run the whole code, you are required to install:
 1. python > 3.5
 2. Rosetta (free for academic users)
 3. snakemake > 5.7.4 < 6.8.3
-   snakemake [installation instruction](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)  
+* snakemake [installation instruction](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html)  
 
 # Running the code
 

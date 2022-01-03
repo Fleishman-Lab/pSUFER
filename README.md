@@ -16,9 +16,15 @@ To run the whole code, you are required to install:
 
 # Running the code
 
+You can control the pSUFER analysis through pSUFER_config.yaml:
+1. rosetta_exec: a path to Rosetta executable
+2. trajectories: how many relax trajectories to perform. default is 4
+3. energy_cutoff_for_pymol:ΔΔG cutoff by which to decide to look for suboptimal positions. default is 0, i.e better than WT 
+4. identities_at_frustrated_pos: how many identities at a position count for being suboptimal. default 5
+5. jump: adjust if jump is needed for rosetta fold tree. default 0  
+
 To start, place your pdb files in ``in/<my dir>/<PDB>.pdb``. **Filenames shouldn't include question marks (?)**. 
-Also, adjust path to Rosetta executable in ``pSUFER_config.yaml``, under <rosetta_exec>
-  
+
 Next, run the pSUFER.snakemake code. An example of a commandline would be:
 
 ```
@@ -35,13 +41,8 @@ The code will perform the following:
     c. pymol_pSUFERed: a set of pymol scripts to load the relaxed PDB files and label the suboptimal positions.
    
  
-You can control the pSUFER analysis through pSUFER_config.yaml:
-1. trajectories: how many relax trajectories to perform.
-2. energy_cutoff_for_pymol: What is the energy cutoff by which to decide to look for suboptimal positions
-3. identities_at_frustrated_pos: how many identities at a position count for being suboptimal.
-
 In case you wish to avoid the relaxation step, you can place the structures directly under ``relax/<my dir>/<PDB>.pdb``.
-  
+
 # Results
   All suboptimal positions are summarized in pSUFERED.csv
   
@@ -49,3 +50,14 @@ In case you wish to avoid the relaxation step, you can place the structures dire
   1. open the relaxed structures in pymol (under ``relax/<my dir>/<PDB>.pdb``) and drop the file ``pymol_pSUFERed/<my dir>/<PDB>/load_struct.pml`` on the session.
   2. open the ``pymol_pSUFERed/master.pse`` to see all pdbs in the same pymol session. 
   
+  results will also be summarized in the ``pSUFERed.csv`` file
+
+# Running without snakemake
+If you wish to avoid using snakemake, pSUFER can be run manually using the xmls and flags provided in the respective folders. 
+The basic steps would be:
+1. relax the structure several time and take the lowest energy (total_score) variant:
+``{rosetta_exec} -parser:protocol xmls/refine.xml -s {input.pdb}  @flags/flags_refinement -parser:script_vars jump={jump_value}``  
+2. run filterscan on all positions in the structure.  
+``{rosetta_exec} @flags/filterscan.flags -s {input.pdb} -script_vars current_res={pos} scores_path={path} files_path={path} resfiles_path={path} jump={jump_value}``
+The ``unify_res_file`` function in ``scripts/resfily.py`` can be used to order all the individual resfiles created in this step according to the different ΔΔG cutoffs specified in flags/filterscan.flags.
+3. check which positions include more than a desired number of mutations (excluding the WT identity) in the resfile created in step 2.

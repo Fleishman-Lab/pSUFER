@@ -1,6 +1,5 @@
 rosetta_exec: '/home/labs/fleishman/sarel/bin/rosetta_scripts.default.linuxiccrelease'
 energy_cutoffs_rosetta: ["0.5", "0", "-0.5", "-0.75", "-1"]
-energy_cutoffs_unified: ["0.5", "0.0", "-0.5", "-0.75", "-1.0"]
 energy_cutoff_for_pymol: "0.0"
 identities_at_frustrated_pos: 5
 trajectories: 4

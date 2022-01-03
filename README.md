@@ -53,11 +53,11 @@ In case you wish to avoid the relaxation step, you can place the structures dire
 
 # Running without snakemake
 If you wish to avoid using snakemake, pSUFER can be run manually using the xmls and flags provided in the respective folders. 
-The basic steps would be:<br />
-1. relax the structure several time and take the lowest energy (total_score) variant:
+The basic steps would be:  
+1. relax the structure several time and take the lowest energy (total_score) variant:  
 ``{rosetta_exec} -parser:protocol xmls/refine.xml -s {input.pdb}  @flags/flags_refinement -parser:script_vars jump={jump_value}`` 
 
-2. run filterscan on all positions in the structure:<br />  
-``{rosetta_exec} @flags/filterscan.flags -s {input.pdb} -script_vars current_res={pos} scores_path={path} files_path={path} resfiles_path={path} jump={jump_value}``<br />
-The ``unify_res_file`` function in ``scripts/resfily.py`` can be used to order all the individual resfiles created in this step according to the different ΔΔG cutoffs specified in flags/filterscan.flags.
+2. run filterscan on all positions in the structure:   
+``{rosetta_exec} @flags/filterscan.flags -s {input.pdb} -script_vars current_res={pos} scores_path={path} files_path={path} resfiles_path={path} jump={jump_value}``   
+The ``unify_res_file`` function in ``scripts/resfily.py`` can be used to order all the individual resfiles created in this step according to the different ΔΔG cutoffs specified in flags/filterscan.flags.  
 3. check which positions include more than a desired number of mutations (excluding the WT identity) in the resfile created in step 2.
